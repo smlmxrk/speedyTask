@@ -38,7 +38,7 @@ public class TaskManager {
             System.out.println("No tasks available.");
         } else {
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i + ". " + tasks.get(i).toString());
+                System.out.println((i + 1) + ". " + tasks.get(i).toString());
             }
         }
     }
@@ -48,7 +48,7 @@ public class TaskManager {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(TASKS_FILE))) {
             return (List<Task>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<>(); // if it doesn't exist, return a empty list
+            return new ArrayList<>(); // if it doesn't exist, return an empty list
         }
     }
 
@@ -56,7 +56,7 @@ public class TaskManager {
     private void saveTasks() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(TASKS_FILE))) {
             oos.writeObject(tasks);
-        } catch (IOException e) {
+        } catch (IOException e) { // handle error
             System.err.println("Error saving tasks.");
         }
     }

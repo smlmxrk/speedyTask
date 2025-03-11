@@ -11,7 +11,7 @@ public class Main {
         showHelp();
 
         while (true) {
-            System.out.print("\n Enter command: ");
+            System.out.print("\nEnter command: ");
             String input = scanner.nextLine().trim().toLowerCase();
 
             if (input.equals("exit")) {
@@ -109,7 +109,7 @@ public class Main {
     }
 
     private static void showHelp() {
-        System.out.println("\n Available commands:");
+        System.out.println("\nAvailable commands:");
         System.out.println("fetch                    - List all tasks");
         System.out.println("add <taskName> <dueDate> - Add a new task");
         System.out.println("complete <taskIndex>     - Mark task as completed");
