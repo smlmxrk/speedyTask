@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="speedyTask:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/speedyTask_jar</output-path>
+    <root id="archive" name="speedyTask.jar">
+      <element id="module-output" name="speedyTask" />
+    </root>
+  </artifact>
+</component>
