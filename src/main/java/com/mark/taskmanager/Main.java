@@ -1,5 +1,6 @@
 package com.mark.taskmanager;
 import javax.management.monitor.StringMonitor;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 /* todo still:
@@ -58,6 +59,10 @@ public class Main {
                 clearTasks();
                 break;
 
+            case "edit":
+                editTask(parts);
+                break;
+
             default:
                 System.out.println("Invalid command. Type 'help' for available commands.");
                 break;
@@ -85,6 +90,46 @@ public class Main {
         Task newTask = new Task(taskName, dueDate);
         taskManager.addTask(newTask);
         System.out.println("Task added: " + newTask);
+    }
+
+    // ** REMEMBER TO FIX THIS - not parsing correctly, indexes off as well **
+
+    private static void editTask(String[] parts) {
+        if (parts.length < 2) {
+            System.out.println("Usage: edit <taskIndex> <newTask> <dueDate>");
+            return;
+        }
+
+        String[] args = parts[1].split(" ", 2);
+        if (args.length < 2) {
+            System.out.println("Invalid format! Usage: edit <taskIndex> <newTaskName> <dueDate>");
+            return;
+        }
+
+        try {
+            int taskIndex = Integer.parseInt(args[0]);
+            String[] taskDetails = args[1].split(" ", 2);
+
+            if (taskDetails.length < 2) {
+                System.out.println("Invalid format! Usage: edit <taskIndex> <newTaskName> <dueDate>");
+                return;
+            }
+
+            String newTaskName = taskDetails[0];
+            String newDueDate = taskDetails[1];
+
+            if (!taskManager.containsTask(taskIndex)) {
+                System.out.println("No task found at index " + taskIndex);
+                return;
+            }
+
+            Task updatedTask = new Task(newTaskName, newDueDate);
+            taskManager.editTask(taskIndex, updatedTask);
+            System.out.println("Task " + taskIndex + " updated: " + updatedTask);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid task index. Please enter a valid number.");
+        }
+
     }
 
     // mark a task as completed

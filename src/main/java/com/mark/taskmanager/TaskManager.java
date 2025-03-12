@@ -19,6 +19,15 @@ public class TaskManager {
         saveTasks();
     }
 
+    public void editTask(int index, Task task) {
+       if (index >= 0 && index < tasks.size()) {
+           tasks.set(index, task);
+           System.out.println("Task at index: " + index + " updated to : " + task);
+       } else {
+           System.out.println("Error: Invalid task index. No task updated.");
+       }
+    }
+
     public void deleteTask(int taskIndex) {
         if (taskIndex >= 0 && taskIndex < tasks.size()) {
             tasks.remove(taskIndex);
