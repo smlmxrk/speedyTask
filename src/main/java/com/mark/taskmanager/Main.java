@@ -2,12 +2,17 @@ package com.mark.taskmanager;
 import javax.management.monitor.StringMonitor;
 import java.util.Scanner;
 
+/* todo still:
+-configure library for colors
+-overwrite/edit task
+-task archives
+*/
 public class Main {
     private static final TaskManager taskManager = new TaskManager();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Welcome to the Task Manager!\n");
+        System.out.println("Welcome to speedyTask!\n");
         showHelp();
 
         while (true) {
