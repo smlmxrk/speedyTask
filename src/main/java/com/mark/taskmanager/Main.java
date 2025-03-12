@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 /* todo still:
 -configure library for colors
--overwrite/edit task
 -task archives
--fix more bugs
+-fix more bugs as you find them
 */
 
 public class Main {

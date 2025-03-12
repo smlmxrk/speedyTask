@@ -40,6 +40,7 @@ public class TaskManager {
     public void clearTasks() {
         tasks.clear();
         System.out.println("All tasks have been cleared!");
+        saveTasks();
     }
 
     public void markTaskAsCompleted(int taskIndex) {
