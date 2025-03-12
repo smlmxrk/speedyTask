@@ -108,32 +108,36 @@ public class Main {
 
         try {
             int taskIndex = Integer.parseInt(args[0]);
-            String[] taskDetails = args[1].split(" ", 2);
 
-            if (taskDetails.length < 2) {
-                System.out.println("Invalid format! Usage: edit <taskIndex> <newTaskName> <dueDate>");
+
+            // check that the index is valid
+            if (taskIndex < 1 || taskIndex > taskManager.getTaskCount()) {
+                System.out.println("Invalid task index. Please enter a number between 1 and " + taskManager.getTaskCount() + ".");
+            }
+
+            String inputDetails = args[1];
+            int lastSpaceIndex = inputDetails.lastIndexOf(" ");
+
+            if (lastSpaceIndex == -1) {
+                System.out.println("Invalid format! Usage: edit <taskIndex> <dueDate>");
                 return;
             }
 
-            String newTaskName = taskDetails[0];
-            String newDueDate = taskDetails[1];
-
-            if (!taskManager.containsTask(taskIndex)) {
-                System.out.println("No task found at index " + taskIndex);
-                return;
-            }
+           String newTaskName = inputDetails.substring(0, lastSpaceIndex);
+           String newDueDate = inputDetails.substring(lastSpaceIndex + 1);
 
             Task updatedTask = new Task(newTaskName, newDueDate);
             taskManager.editTask(taskIndex, updatedTask);
-            System.out.println("Task " + taskIndex + " updated: " + updatedTask);
+
+            System.out.println("Task " + (taskIndex) + " updated: " + updatedTask);
         } catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please enter a valid number.");
         }
 
     }
 
-    // mark a task as completed
 
+    // mark a task as completed
     private static void completeTask(String[] parts) {
         if (parts.length < 2) {
             System.out.println("Usage: complete <taskIndex>");
@@ -142,8 +146,9 @@ public class Main {
 
         try {
             int taskIndex = Integer.parseInt(parts[1]);
-            taskManager.markTaskAsCompleted(taskIndex);
-            System.out.println("Task " + taskIndex + " marked as completed.");
+            if (taskIndex < 1 || taskIndex > taskManager.getTaskCount()) {
+                System.out.println("Invalid task index. Please provide a valid task index.");
+            } else { taskManager.markTaskAsCompleted(taskIndex); }
         } catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please provide a valid task index.");
         }
@@ -185,13 +190,14 @@ public class Main {
 
     private static void showHelp() {
         System.out.println("\nAvailable commands:");
-        System.out.println("fetch                    - List all tasks");
-        System.out.println("add <taskName> <dueDate> - Add a new task");
-        System.out.println("complete <taskIndex>     - Mark task as completed");
-        System.out.println("delete <taskIndex>       - Delete a task");
-        System.out.println("help                     - Show available commands");
-        System.out.println("exit                     - Exit the program");
-        System.out.println("clear                    - Clear all tasks");
+        System.out.println("fetch                     - List all tasks");
+        System.out.println("add <taskName> <dueDate>  - Add a new task");
+        System.out.println("edit <taskName> <dueDate> - Edit a task");
+        System.out.println("complete <taskIndex>      - Mark task as completed");
+        System.out.println("delete <taskIndex>        - Delete a task");
+        System.out.println("help                      - Show available commands");
+        System.out.println("exit                      - Exit the program");
+        System.out.println("clear                     - Clear all tasks");
     }
 
 

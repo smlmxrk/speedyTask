@@ -20,9 +20,11 @@ public class TaskManager {
     }
 
     public void editTask(int index, Task task) {
-       if (index >= 0 && index < tasks.size()) {
-           tasks.set(index, task);
-           System.out.println("Task at index: " + index + " updated to : " + task);
+       int actualIndex = index - 1;
+       if (actualIndex >= 0 && actualIndex < tasks.size()) {
+           tasks.set(actualIndex, task);
+           saveTasks();
+           // System.out.println("Task at index " + index + " updated to: " + task);
        } else {
            System.out.println("Error: Invalid task index. No task updated.");
        }
@@ -41,9 +43,12 @@ public class TaskManager {
     }
 
     public void markTaskAsCompleted(int taskIndex) {
-        if (taskIndex >= 0 && taskIndex < tasks.size()) {
-            tasks.get(taskIndex).markAsCompleted();
+        if (taskIndex >= 0 && taskIndex < tasks.size()+1) {
+            tasks.get(taskIndex-1).markAsCompleted();
             saveTasks();
+            System.out.println("Task " + taskIndex + " marked as completed.");
+        } else if (taskIndex >= tasks.size()+1) {
+            System.out.println("Error: Invalid task index. No task marked as completed.");
         }
     }
 
@@ -55,6 +60,10 @@ public class TaskManager {
                 System.out.println((i + 1) + ". " + tasks.get(i).toString());
             }
         }
+    }
+
+    public int getTaskCount() {
+        return tasks.size();
     }
 
     public boolean containsTask(int taskIndex) {
