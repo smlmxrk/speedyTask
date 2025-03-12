@@ -52,6 +52,10 @@ public class Main {
                 showHelp();
                 break;
 
+            case "clear":
+                clearTasks();
+                break;
+
             default:
                 System.out.println("Invalid command. Type 'help' for available commands.");
                 break;
@@ -106,10 +110,24 @@ public class Main {
 
         try {
             int taskIndex = Integer.parseInt(parts[1]);
-            taskManager.deleteTask(taskIndex);
+            taskManager.deleteTask(taskIndex-1);
             System.out.println("Task " + taskIndex + " deleted.");
         }   catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please provide a valid task index.");
+        }
+    }
+
+    private static void clearTasks() {
+        System.out.println("Are you sure? (y/n)");
+        String response = scanner.nextLine().trim().toLowerCase();
+
+        if (response.equals("y")) {
+            System.out.println("Clearing tasks...");
+            taskManager.clearTasks();
+        } else if (response.equals("n")) {
+            System.out.println("Returning to command line.");
+        } else {
+            System.out.println("Invalid response, returning to command line");
         }
     }
 
@@ -121,6 +139,7 @@ public class Main {
         System.out.println("delete <taskIndex>       - Delete a task");
         System.out.println("help                     - Show available commands");
         System.out.println("exit                     - Exit the program");
+        System.out.println("clear                    - Clear all tasks");
     }
 
 

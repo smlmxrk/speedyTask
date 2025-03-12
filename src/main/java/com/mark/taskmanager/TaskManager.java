@@ -26,6 +26,11 @@ public class TaskManager {
         }
     }
 
+    public void clearTasks() {
+        tasks.clear();
+        System.out.println("All tasks have been cleared!");
+    }
+
     public void markTaskAsCompleted(int taskIndex) {
         if (taskIndex >= 0 && taskIndex < tasks.size()) {
             tasks.get(taskIndex).markAsCompleted();
