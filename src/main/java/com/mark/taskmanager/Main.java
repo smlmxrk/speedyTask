@@ -118,7 +118,7 @@ public class Main {
 
         if (response.equals("y")) {
             System.out.println("Clearing tasks...");
-            // finish logic for clearing tasks
+            taskManager.clearTasks();
         } else if (response.equals("n")) {
             System.out.println("Returning to command line.");
         } else {
@@ -134,6 +134,7 @@ public class Main {
         System.out.println("delete <taskIndex>       - Delete a task");
         System.out.println("help                     - Show available commands");
         System.out.println("exit                     - Exit the program");
+        System.out.println("clear                    - Clear all tasks");
     }
 
 
