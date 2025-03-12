@@ -6,7 +6,9 @@ import java.util.Scanner;
 -configure library for colors
 -overwrite/edit task
 -task archives
+-fix more bugs
 */
+
 public class Main {
     private static final TaskManager taskManager = new TaskManager();
     private static final Scanner scanner = new Scanner(System.in);
@@ -110,8 +112,13 @@ public class Main {
 
         try {
             int taskIndex = Integer.parseInt(parts[1]);
-            taskManager.deleteTask(taskIndex-1);
-            System.out.println("Task " + taskIndex + " deleted.");
+
+            if (taskManager.containsTask(taskIndex-1)) {
+                taskManager.deleteTask(taskIndex - 1);
+                System.out.println("Task " + taskIndex + " deleted.");
+            } else {
+                System.out.println("No task to delete at that index!");
+            }
         }   catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please provide a valid task index.");
         }

@@ -48,6 +48,10 @@ public class TaskManager {
         }
     }
 
+    public boolean containsTask(int taskIndex) {
+        return taskIndex >= 0 && taskIndex < tasks.size();
+    }
+
     // load tasks from file
     private List<Task> loadTasks() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(TASKS_FILE))) {
