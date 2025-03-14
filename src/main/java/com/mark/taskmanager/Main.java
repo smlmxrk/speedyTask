@@ -4,9 +4,10 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 /* todo still:
--configure library for colors
+-**configure library for colors**
 -task archives
 -fix more bugs as you find them
+*think of other things to add
 */
 
 public class Main {
@@ -91,8 +92,6 @@ public class Main {
         System.out.println("Task added: " + newTask);
     }
 
-    // ** REMEMBER TO FIX THIS - not parsing correctly, indexes off as well **
-
     private static void editTask(String[] parts) {
         if (parts.length < 2) {
             System.out.println("Usage: edit <taskIndex> <newTask> <dueDate>");
@@ -134,7 +133,6 @@ public class Main {
         }
 
     }
-
 
     // mark a task as completed
     private static void completeTask(String[] parts) {
@@ -198,6 +196,5 @@ public class Main {
         System.out.println("exit                      - Exit the program");
         System.out.println("clear                     - Clear all tasks");
     }
-
 
 }
