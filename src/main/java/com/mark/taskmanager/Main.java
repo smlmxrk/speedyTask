@@ -3,31 +3,35 @@ import javax.management.monitor.StringMonitor;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
-/* todo still:
--**configure library for colors**
--task archives
--fix more bugs as you find them
-*think of other things to add
-*/
+// TODO: Configure library for colors
+// TODO: Implement task archives
+// TODO: Fix bugs as they appear
+// TODO: Think of new features
 
 public class Main {
     private static final TaskManager taskManager = new TaskManager();
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static void main(String[] args) {
-        System.out.println("Welcome to speedyTask!\n");
-        showHelp();
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Welcome to speedyTask!\n");
+            scanner = sc;
+            showHelp();
 
-        while (true) {
-            System.out.print("\nEnter command: ");
-            String input = scanner.nextLine().trim().toLowerCase();
+            System.out.println("Welcome to speedyTask!\n");
+            showHelp();
 
-            if (input.equals("exit")) {
-                System.out.println("Exiting...");
-                break;
+            while (true) {
+                System.out.print("\nEnter command: ");
+                String input = scanner.nextLine().trim().toLowerCase();
+
+                if (input.equals("exit")) {
+                    System.out.println("Exiting...");
+                    break;
+                }
+
+                parseCommand(input);
             }
-
-            parseCommand(input);
         }
     }
 
@@ -107,10 +111,10 @@ public class Main {
         try {
             int taskIndex = Integer.parseInt(args[0]);
 
-
             // check that the index is valid
             if (taskIndex < 1 || taskIndex > taskManager.getTaskCount()) {
                 System.out.println("Invalid task index. Please enter a number between 1 and " + taskManager.getTaskCount() + ".");
+                return;
             }
 
             String inputDetails = args[1];
@@ -145,9 +149,11 @@ public class Main {
             int taskIndex = Integer.parseInt(parts[1]);
             if (taskIndex < 1 || taskIndex > taskManager.getTaskCount()) {
                 System.out.println("Invalid task index. Please provide a valid task index.");
+                return;
             } else { taskManager.markTaskAsCompleted(taskIndex); }
         } catch (NumberFormatException e) {
             System.out.println("Invalid task index. Please provide a valid task index.");
+            return;
         }
     }
 
