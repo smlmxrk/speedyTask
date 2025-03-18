@@ -1,12 +1,11 @@
 package com.mark.taskmanager;
-import javax.management.monitor.StringMonitor;
-import java.text.NumberFormat;
 import java.util.Scanner;
 
 // TODO: Configure library for colors
 // TODO: Implement task archives
 // TODO: Fix bugs as they appear
 // TODO: Think of new features
+// TODO: REFACTOR parseCommand() into ENUM
 
 public class Main {
     private static final TaskManager taskManager = new TaskManager();
@@ -121,7 +120,7 @@ public class Main {
             int lastSpaceIndex = inputDetails.lastIndexOf(" ");
 
             if (lastSpaceIndex == -1) {
-                System.out.println("Invalid format! Usage: edit <taskIndex> <dueDate>");
+                System.out.println("Invalid format! Usage: edit <taskIndex> <newTaskName> <dueDate>");
                 return;
             }
 
@@ -178,16 +177,20 @@ public class Main {
     }
 
     private static void clearTasks() {
+        while(true) {
         System.out.println("Are you sure? (y/n)");
         String response = scanner.nextLine().trim().toLowerCase();
 
         if (response.equals("y")) {
             System.out.println("Clearing tasks...");
             taskManager.clearTasks();
+            break;
         } else if (response.equals("n")) {
             System.out.println("Returning to command line.");
+            break;
         } else {
             System.out.println("Invalid response, returning to command line");
+            }
         }
     }
 
