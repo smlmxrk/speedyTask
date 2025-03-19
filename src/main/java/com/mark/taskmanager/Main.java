@@ -34,41 +34,32 @@ public class Main {
         }
     }
 
+    private enum Command {
+        FETCH, ADD, EDIT, COMPLETE, DELETE, HELP, CLEAR, EXIT, UNKNOWN;
+
+        public static Command fromString(String command) {
+            try {
+                return Command.valueOf(command.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return UNKNOWN;
+            }
+        }
+    }
+
     private static void parseCommand(String command) {
         String[] parts = command.split(" ", 2);
+        Command cmd = Command.fromString(parts[0]);
 
-        switch (parts[0]) {
-            case "fetch":
-                fetchTasks();
-                break;
-
-            case "add":
-                addTask(parts);
-                break;
-
-            case "complete":
-                completeTask(parts);
-                break;
-
-            case "delete":
-                deleteTask(parts);
-                break;
-
-            case "help":
-                showHelp();
-                break;
-
-            case "clear":
-                clearTasks();
-                break;
-
-            case "edit":
-                editTask(parts);
-                break;
-
-            default:
-                System.out.println("Invalid command. Type 'help' for available commands.");
-                break;
+        switch (cmd) {
+            case FETCH -> fetchTasks();
+            case ADD -> addTask(parts);
+            case EDIT -> editTask(parts);
+            case COMPLETE -> completeTask(parts);
+            case DELETE -> deleteTask(parts);
+            case HELP -> showHelp();
+            case CLEAR -> clearTasks();
+            case EXIT -> System.out.println("Use 'exit' to exit.");
+            default -> System.out.println("Unknown command: " + command);
         }
     }
 
