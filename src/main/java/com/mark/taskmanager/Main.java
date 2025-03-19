@@ -1,11 +1,12 @@
 package com.mark.taskmanager;
 import java.util.Scanner;
+import org.fusesource.jansi.Ansi;
+import static org.fusesource.jansi.Ansi.ansi;
 
-// TODO: Configure library for colors
-// TODO: Implement task archives
+// TODO: Implement JANSI for color-coded tasks
+// TODO: Implement task archive
 // TODO: Fix bugs as they appear
-// TODO: Think of new features
-// TODO: REFACTOR parseCommand() into ENUM
+// TODO: Add priorities (and potential sorting)
 
 public class Main {
     private static final TaskManager taskManager = new TaskManager();
@@ -25,7 +26,7 @@ public class Main {
                 String input = scanner.nextLine().trim().toLowerCase();
 
                 if (input.equals("exit")) {
-                    System.out.println("Exiting...");
+                    System.out.println(ansi().fg(Ansi.Color.RED).a("Exiting...").reset());
                     break;
                 }
 
