@@ -14,15 +14,12 @@ public class Main {
 
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Welcome to speedyTask!\n");
+            System.out.println(ansi().fg(Ansi.Color.GREEN).a("Welcome to speedyTask!").reset());
             scanner = sc;
             showHelp();
 
-            System.out.println("Welcome to speedyTask!\n");
-            showHelp();
-
             while (true) {
-                System.out.print("\nEnter command: ");
+                System.out.print(ansi().fg(Ansi.Color.YELLOW).a("\nEnter command: ").reset());
                 String input = scanner.nextLine().trim().toLowerCase();
 
                 if (input.equals("exit")) {
@@ -187,7 +184,7 @@ public class Main {
     }
 
     private static void showHelp() {
-        System.out.println("\nAvailable commands:");
+        System.out.println("\nAvailable commands:\n");
         System.out.println("fetch                     - List all tasks");
         System.out.println("add <taskName> <dueDate>  - Add a new task");
         System.out.println("edit <taskName> <dueDate> - Edit a task");
