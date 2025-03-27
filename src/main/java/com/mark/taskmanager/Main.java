@@ -7,6 +7,7 @@ import static org.fusesource.jansi.Ansi.ansi;
 // TODO: Implement task archive
 // TODO: Fix bugs as they appear
 // TODO: Add priorities (and potential sorting)
+// TODO: Refactor Command into a Map
 
 public class Main {
     private static final TaskManager taskManager = new TaskManager();

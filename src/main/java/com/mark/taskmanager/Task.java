@@ -34,7 +34,10 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "Task: " + taskName + " | Due: " + dueDate + " | Status: " + (isCompleted ? "Completed" : "Not Completed");
+        return "Task: " + taskName + " | Due: " + dueDate + " | Status: " +
+                (isCompleted
+                ? ansi().fg(Ansi.Color.GREEN).a("Completed").reset().toString()
+                : ansi().fg(Ansi.Color.RED).a("Not Completed").reset().toString());
     }
 
 }
