@@ -1,3 +1,3 @@
-simple, command-line based task organization application made with java
+Simple, lightweight, command line task management application made using Java.
 
-utilizes serialization to save tasks to your local computer
+![image](https://github.com/user-attachments/assets/157b5b1f-0ca9-4ee7-ba09-431293ad0466)
