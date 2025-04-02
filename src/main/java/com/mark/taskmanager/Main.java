@@ -3,7 +3,6 @@ import java.util.Scanner;
 import org.fusesource.jansi.Ansi;
 import static org.fusesource.jansi.Ansi.ansi;
 
-// TODO: Implement JANSI for color-coded tasks
 // TODO: Implement task archive
 // TODO: Fix bugs as they appear
 // TODO: Add priorities (and potential sorting)
